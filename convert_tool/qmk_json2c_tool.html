@@ -1,0 +1,278 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h2>Config.Qmk.Fm Json file</h2>
+    从这个调整配列然后下载后复制代码
+    <a href="https://config.qmk.fm/#/beekeeb/piantor/LAYOUT_split_3x6_3"></a>
+    <textarea id="configFile" class="fullWidth"></textarea>
+    <br>
+    <p>
+        保留ANY标记? 是<input type="radio" id="anyYes" name="isAny" />
+        否 <input type="radio" id="anyNo" name="isAny" checked="yes" />
+    </p>
+    <p>
+        <input id="insertLayerInput" type="number" min="0" step="1" value="1" />
+        <button id="insertLayerButton" onclick="insertLayer()">insert layer</button>
+        <button id="insertLayerButtonAdaptive" onclick="insertLayerAdaptive()">insert layer and adaptive</button>
+    </p>
+    <p>
+        <input id="removeLayerInput" type="number" min="0" step="1" value="1" />
+        <button id="removeLayerButton" onclick="removeLayer()">remove layer</button>
+        <button id="removeLayerButtonAdaptive" onclick="removeLayerAdaptive()">remove layer and adaptive</button>
+    </p>
+    <h2>
+        <label> kmk keymap</label>
+    </h2>
+    <button onclick="copy('kmkKeyMap')">copy kmk</button>
+    <div>
+        ps: 可以用ANY写 KC.LCTL(KC.LALT(KC.TAB)), 直接写LCA(TAB)的话kmk识别不了, 以此类推
+    </div>
+    <textarea id="kmkKeyMap" class="fullWidth" disabled></textarea>
+    <br>
+
+    <h2>Keymap.c</h2>
+    <!-- <label>Keyboard</label>
+    <br>
+    <input id="infoKeyboard" disabled>
+    <br>
+    <label>Keymap Name</label>
+    <br>
+    <input id="infoKeymapName" disabled>
+    <br>
+    <label>Layout Name</label>
+    <br>
+    <input id="infoLayoutName" disabled>
+    <br>
+    <label>Layers</label>
+    <br>
+    <input id="infoNumLayers" disabled>
+    <br>
+    <label>Output Keymap.c</label>
+    <br> -->
+    <button onclick="copy('keymap')">copy qmk</button>
+
+    <textarea id="keymap" class="fullWidth" disabled></textarea>
+
+    <style>
+        .fullWidth {
+            width: 100%;
+            height: 200px;
+            white-space: pre;
+            overflow: scroll;
+        }
+
+    </style>
+    <script>
+        function copy(id) {
+            navigator.clipboard.writeText(document.getElementById(id).value);
+        }
+    </script>
+    <script>
+        function adaptiveFunc(mode, json) {
+            const regexObj1 = {
+                matchRegex: [(n) => new RegExp(String.raw`^${n}\((.*),.*\)$`), () => '$1'],
+                replaceRegex: [(n) => new RegExp(String.raw`^(${n}\().*(,.*\))$`), (n) => `$1${n}$2`],
+                matchRegexAny: [(n) => new RegExp(String.raw`^ANY\(${n}\((.*),.*\)\)$`), () => '$1'],
+                replaceRegexAny: [(n) => new RegExp(String.raw`^(ANY\(${n}\().*(,.*\)\))$`), (n) => `$1${n}$2`]
+            }
+            const regexObjArr1 = ['LT'].map((i) => [i, regexObj1])
+            const regexObj2 = {
+                matchRegex: [(n) => new RegExp(String.raw`^${n}\((.*)\)$`), () => '$1'],
+                replaceRegex: [(n) => new RegExp(String.raw`^(${n}\().*(\))$`), (n) => `$1${n}$2`],
+                matchRegexAny: [(n) => new RegExp(String.raw`^ANY\(${n}\((.*)\)\)$`), () => '$1'],
+                replaceRegexAny: [(n) => new RegExp(String.raw`^(ANY\(${n}\().*(\)\))$`), (n) => `$1${n}$2`]
+            }
+            const regexObjArr2 = ['MO', 'TG', 'TO', 'TT', 'DF', 'OSL'].map((i) => [i, regexObj2])
+
+            return jsonAdaptive = json.layers.map((i) => i.map((i) => {
+                for (let [name, regexObj] of [...regexObjArr1, ...regexObjArr2]) {
+                    m = i.match(regexObj.matchRegex[0](name), regexObj.matchRegex[1]())
+                    mAny = i.match(regexObj.matchRegexAny[0](name), regexObj.matchRegexAny[1]())
+                    if (m) {
+                        r = i.replace(regexObj.replaceRegex[0](name), regexObj.replaceRegex[1](mode ? parseInt(m[1]) + 1 : parseInt(m[1]) - 1))
+                        return r
+                    }
+                    if (mAny) {
+                        rAny = i.replace(regexObj.replaceRegexAny[0](name), regexObj.replaceRegexAny[1](mode ? parseInt(mAny[1]) + 1 : parseInt(mAny[1]) - 1))
+                        return rAny
+                    }
+                }
+                return i
+            }))
+        }
+    </script>
+    <script>
+        function convert2qmk(layers, layout, keymap, keyboard) {
+            const l = layers.map((layer, i) => `    [` + i + `] = ` + layout + `(` + layer.map((key, j) => key).join(", ") + `)`).join(",\n")
+            return `const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n${l}\n};`;
+        }
+        function casg_regex(text, m) {
+            let dict = { C: `KC.${m}CTL`, S: `KC.${m}SFT`, A: `KC.${m}ALT`, G: `KC.${m}GUI`, }
+            let reg = RegExp(`^${m}${text}\\((.+)\\)$`)
+            let target = text.split('').map((i) => dict[i])
+            target = `${target.join('(')}($1`
+            target = target + ')'.repeat(target.split('(').length - 1)
+            debugger
+            return [reg, target]
+        }
+        function replace_chain(key) {
+            let arr = ['LCTL', 'LSFT', 'LALT', 'LGUI', 'RCTL', 'RSFT', 'RALT', 'RGUI']
+            let arr2 = arr.map((i) => [`KC.${i}`, `${i}`])
+            let arr3 = arr.map((i) => [`${i}`, `KC.${i}`])
+            let arr4 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].map((i) => [`KC.${i}`, `KC.N${i}`])
+            let arr5 = ['DF', 'MO', 'LM', 'LT', 'TG', 'TO', 'TT'].map((i) => [`${i}`, `KC.${i}`])
+            arr5 = [...arr5, ['KC.LAKC.LT', 'KC.LALT']]//保持顺序过滤异常
+
+            //算了不弄了, 组合键用any吧, 因为qmk的gui支持也不好, 还不如用any
+            // let arr6 = ['CAG']
+            // let arr7 = [...arr6.map((i) => casg_regex(i, 'L')), ...arr6.map((i) => casg_regex(i, 'R'))]
+
+            // http://kmkfw.io/docs/mouse_keys
+            // 待补充
+            let arr6 = [['KC.BTN1', 'KC.MB_LMB'], ['KC.BTN2', 'KC.MB_RMB'], ['KC.BTN3', 'KC.MB_MMB'], ['KC.MS_U', 'KC.MW_UP'], ['KC.MS_D', 'KC.MW_DOWN']]
+            // http://kmkfw.io/docs/media_keys
+            let arr7 = [['KC.MUTE', 'KC.AUDIO_MUTE'], ['KC.VOLU', 'KC.AUDIO_VOL_UP'], ['KC.VOLD', 'KC.AUDIO_VOL_DOWN'], ['KC.BRIU', 'KC.BRIGHTNESS_UP'], ['KC.BRID', 'KC.BRIGHTNESS_DOWN']]
+            let arr8 = [['KC.KC.LT', 'KC.LABK'], ['KC.GT', 'KC.RABK'], ['KC.EXKC.LM', 'KC.EXLM']]
+            let arr9 = [['OS_KC.LCTL', 'OS_LCTL'], ['OS_KC.LALT', 'OS_LALT'], ['OS_KC.LSFT', 'OS_LSFT'], ['OS_KC.LGUI', 'OS_LGUI']]
+            const array = [['KC_', 'KC.'], ...arr2, ...arr3, ...arr4, ...arr5, ...arr6, ...arr8, ...arr9]
+            const array_filter = []// [['LT', 'KC.LALT']]
+
+            let n = 0
+            for (let i of array) {
+                function filter() {
+                    for (let f of array_filter) {//直接写成chain吧, 别用这个了,把array_filter=[]就等于不用了
+                        if (f[0] == i[0] && f[1] == key) {
+                            return true
+                        }
+                    }
+                    return false
+                }
+                if (!filter()) {
+                    // if (key.indexOf('LCA') && n > 35) {
+                    //     debugger
+                    // }
+                    key = key.replace(i[0], i[1])
+                }
+                n++
+            }
+            return key
+        }
+        function qmk_kmk(layers, layout, keymap, keyboard) {
+            const l = layers.map((layer, i) => `\n[${layer.map((key, j) => replace_chain(key))}]`)
+            return `keymap = [${l}\n]`
+        }
+    </script>
+    <script>
+        // On load
+        document.addEventListener("DomContentLoaded", setup, false);
+        window.onload = setup;
+
+        // DOM
+        var configFile, infoKeyboard, infoKeymapName, infoLayoutName, infoNumLayers, Keymap;
+
+        function setup() {
+            configFile = document.getElementById("configFile");
+            infoKeyboard = document.getElementById("infoKeyboard");
+            infoKeymapName = document.getElementById("infoKeymapName");
+            infoLayoutName = document.getElementById("infoLayoutName");
+            infoNumLayers = document.getElementById("infoNumLayers");
+            outputKeymap = document.getElementById("keymap");
+            outputKmkKeymap = document.getElementById("kmkKeyMap");
+
+            // Listen for load button
+            configFile.addEventListener("input", function () {
+                ConfigToC(configFile.value);
+            });
+            document.getElementById('anyYes').onclick = () => {
+                ConfigToC(configFile.value);
+            }
+            document.getElementById('anyNo').onclick = () => {
+                ConfigToC(configFile.value);
+            }
+            function handleFunc(mode, id) {
+                removeLayerInput
+                insertLayerInput
+                let number = document.querySelector(id).value
+                let json = JSON.parse(configFile.value);
+                let layers = json["layers"];
+                if (mode) {
+                    layers.splice(number, 0, layers[0].slice())
+                } else {
+                    layers.splice(number, 1)
+                }
+                configFile.value = JSON.stringify(json, null, 4)
+                return json
+            }
+            document.getElementById('insertLayerButton').onclick = () => {
+                handleFunc(true, '#insertLayerInput')
+                ConfigToC(configFile.value);
+            }
+            document.getElementById('insertLayerButtonAdaptive').onclick = () => {
+                const json = handleFunc(true, '#insertLayerInput')
+                jsonAdaptive = adaptiveFunc(true, json)
+                json['layers'] = jsonAdaptive
+                configFile.value = JSON.stringify(json, null, 4)
+                ConfigToC(configFile.value);
+                return
+            }
+            document.getElementById('removeLayerButton').onclick = () => {
+                handleFunc(false, '#removeLayerInput')
+                ConfigToC(configFile.value);
+            }
+            document.getElementById('removeLayerButtonAdaptive').onclick = () => {
+                const json = handleFunc(false, '#removeLayerInput')
+                jsonAdaptive = adaptiveFunc(false, json)
+                json['layers'] = jsonAdaptive
+                configFile.value = JSON.stringify(json, null, 4)
+                ConfigToC(configFile.value);
+                return
+            }
+        }
+
+        function ConfigToC(configString,) {
+            let json = JSON.parse(configString);
+            console.log(json)
+
+            let keyboard = json["keyboard"];
+            let keymap = json["keymap"];
+            let layout = json["layout"];
+            let layers = json["layers"];
+            if (document.querySelector('#anyNo').checked) {
+                layers = layers.map((i) => i.map((i) => i.replace(/^ANY\((.*)\)$/, '$1')))
+            }
+
+            let output = convert2qmk(layers, layout, keymap, keyboard)
+            let kmk_output = qmk_kmk(layers, layout, keymap, keyboard)
+
+            SetOutput(keyboard, keymap, layout, layers.length, output, kmk_output);
+        }
+
+        function SetOutput(keyboard, keymapName, layoutName, numLayers, keymap, kmk_map) {
+            if (infoKeyboard) {
+                infoKeyboard.value = keyboard;
+            }
+            if (infoKeymapName) {
+                infoKeymapName.value = keymapName;
+            }
+            if (infoLayoutName) {
+                infoLayoutName.value = layoutName;
+            }
+            if (infoNumLayers) {
+                infoNumLayers.value = numLayers;
+            }
+            if (outputKeymap) {
+                outputKeymap.value = keymap;
+            }
+            if (outputKmkKeymap) {
+                outputKmkKeymap.value = kmk_map
+            }
+        }
+    </script>
+
+</body>
+
+</html>
