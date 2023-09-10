@@ -1,8 +1,8 @@
 # keyboard_firmware
 ## qmk firmware
-  * 因为hid和via有点冲突, 所以不开via, https://github.com/vial-kb/vial-qmk/issues/538
+  * 建议用vial-qmk https://github.com/vial-kb/vial-qmk/issues/538
   * corne和kmk好像也有冲突,可以用qmk https://github.com/KMKfw/kmk_firmware/issues/878
-  * `git clone https://github.com/qmk/qmk_firmware`
+  * `git clone https://github.com/vial-kb/vial-qmk`
   * https://github.com/qmk/qmk_distro_msys/releases/tag/1.7.2
   * `qmk compile -kb crkbd -km vial -e CONVERT_TO=helios`
   * https://learn.adafruit.com/using-qmk-on-rp2040-microcontrollers/adafruit-kb2040-on-the-pb-gherkin-30-keyboard
