@@ -14,3 +14,4 @@ run_keyboard()
   * https://github.com/adafruit/Adafruit_CircuitPython_NeoPixel/blob/main/neopixel.py
   * https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306/blob/main/adafruit_displayio_ssd1306.py
   * https://github.com/adafruit/Adafruit_CircuitPython_Display_Text/tree/main/adafruit_display_text
+* 先用qmk吧, 有个bug未解决
