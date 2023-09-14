@@ -6,13 +6,15 @@
 
 <body>
     <h2>Config.Qmk.Fm Json file</h2>
-    从这个调整配列然后下载后复制代码
+    copy json text from https://config.qmk.fm
     <a href="https://config.qmk.fm/#/beekeeb/piantor/LAYOUT_split_3x6_3"></a>
     <textarea id="configFile" class="fullWidth"></textarea>
     <br>
     <p>
-        保留ANY标记? 是<input type="radio" id="anyYes" name="isAny" />
-        否 <input type="radio" id="anyNo" name="isAny" checked="yes" />
+        clean any label
+        yes <input type="radio" id="anyNo" name="isAny" checked="yes" />
+        no<input type="radio" id="anyYes" name="isAny" />
+
     </p>
     <p>
         <input id="insertLayerInput" type="number" min="0" step="1" value="1" />
@@ -29,7 +31,7 @@
     </h2>
     <button onclick="copy('kmkKeyMap')">copy kmk</button>
     <div>
-        ps: 可以用ANY写 KC.LCTL(KC.LALT(KC.TAB)), 直接写LCA(TAB)的话kmk识别不了, 以此类推
+        support: KC.LCTL(KC.LALT(KC.TAB)), not support: LCA(TAB)
     </div>
     <textarea id="kmkKeyMap" class="fullWidth" disabled></textarea>
     <br>
