@@ -263,22 +263,22 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (get_highest_layer(state))
     {
     case L_N_0:
-        rgblight_sethsv(130, 185, 28);
+        rgblight_sethsv(130, 185, 30);
         break;
     case L_N_1:
         rgblight_sethsv(245, 204, 37);
         break;
     case L_N_2:
-        rgblight_sethsv(195, 139, 20);
+        rgblight_sethsv(127, 160, 16);
         break;
     case L_N_3:
-        rgblight_sethsv(195, 139, 20);
+        rgblight_sethsv(127, 160, 16);
         break;
     case L_N_4:
-        rgblight_sethsv(125, 165, 23);
+        rgblight_sethsv(15, 125, 34);
         break;
     case L_N_5:
-        rgblight_sethsv(125, 165, 23);
+        rgblight_sethsv(15, 125, 34);
         break;
     default:
         rgblight_sethsv(70, 180, 28);
