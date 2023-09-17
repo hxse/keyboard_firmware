@@ -269,10 +269,10 @@ layer_state_t layer_state_set_user(layer_state_t state)
         rgblight_sethsv(245, 204, 37);
         break;
     case L_N_2:
-        rgblight_sethsv(3, 165, 33);
+        rgblight_sethsv(195, 139, 20);
         break;
     case L_N_3:
-        rgblight_sethsv(3, 165, 33);
+        rgblight_sethsv(195, 139, 20);
         break;
     case L_N_4:
         rgblight_sethsv(125, 165, 23);
