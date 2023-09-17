@@ -59,6 +59,10 @@ void raw_hid_receive_kb(uint8_t *data, uint8_t length)
         // default_layer_set(data[1]);
         layer_move(data[2]);
     }
+    if (data[3] == 1)
+    {
+        rgblight_sethsv(data[4], data[5], data[6]);
+    }
     raw_hid_send(data, length);
 }
 #else
@@ -252,3 +256,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 #endif
     return true;
 };
+
+#ifdef RGBLIGHT_ENABLE
+layer_state_t layer_state_set_user(layer_state_t state)
+{
+    switch (get_highest_layer(state))
+    {
+    case L_N_0:
+        rgblight_sethsv(130, 185, 28);
+        break;
+    case L_N_1:
+        rgblight_sethsv(245, 204, 37);
+        break;
+    case L_N_2:
+        rgblight_sethsv(239, 165, 32);
+        break;
+    case L_N_3:
+        rgblight_sethsv(239, 165, 32);
+        break;
+    case L_N_4:
+        rgblight_sethsv(125, 165, 23);
+        break;
+    case L_N_5:
+        rgblight_sethsv(125, 165, 23);
+        break;
+    default:
+        rgblight_sethsv(70, 180, 28);
+        break;
+    }
+    return state;
+}
+#endif

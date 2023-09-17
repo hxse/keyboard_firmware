@@ -53,7 +53,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL_PD2
 #ifdef RGBLIGHT_ENABLE
 #undef RGBLED_NUM
-#define RGBLIGHT_ANIMATIONS
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#undef RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 54
 #undef RGBLED_SPLIT
 #define RGBLED_SPLIT \
