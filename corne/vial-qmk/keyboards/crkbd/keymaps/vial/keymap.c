@@ -39,6 +39,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [5] = LAYOUT_split_3x6_3(KC_TRNS, KC_NO, KC_1, KC_2, KC_3, KC_0, KC_NO, M_curly_brackets, M_square_brackets, M_round_brackets, M_angle_brackets, KC_TRNS, KC_NO, KC_NO, KC_4, KC_5, KC_6, LCTL(KC_LBRC), KC_NO, KC_NO, KC_NO, KC_NO, MO(6), KC_NO, KC_TRNS, KC_NO, KC_7, KC_8, KC_9, KC_DOT, KC_NO, KC_NO, M_arrow_left, M_arrow_right, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, QK_BOOT, TO(1), TO(0), KC_NO),
     [6] = LAYOUT_split_3x6_3(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_HUD, RGB_VAI, RGB_HUI, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_TOG, RGB_SAD, RGB_VAD, RGB_SAI, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO)};
 
+int rgbArr[7][3] = {
+    {130, 185, 30},
+    {245, 204, 37},
+    {245, 204, 37},
+    {127, 160, 16},
+    {127, 160, 16},
+    {5, 160, 50},
+    {70, 180, 28}};
+
 void keyboard_post_init_user(void)
 
 {
@@ -62,6 +71,9 @@ void raw_hid_receive_kb(uint8_t *data, uint8_t length)
     if (data[3] == 1)
     {
         rgblight_sethsv(data[4], data[5], data[6]);
+        rgbArr[0][0] = data[4];
+        rgbArr[0][1] = data[5];
+        rgbArr[0][2] = data[6];
     }
     raw_hid_send(data, length);
 }
@@ -263,25 +275,25 @@ layer_state_t layer_state_set_user(layer_state_t state)
     switch (get_highest_layer(state))
     {
     case L_N_0:
-        rgblight_sethsv(130, 185, 30);
+        rgblight_sethsv(rgbArr[0][0], rgbArr[0][1], rgbArr[0][2]);
         break;
     case L_N_1:
-        rgblight_sethsv(245, 204, 37);
+        rgblight_sethsv(rgbArr[1][0], rgbArr[1][1], rgbArr[1][2]);
         break;
     case L_N_2:
-        rgblight_sethsv(127, 160, 16);
+        rgblight_sethsv(rgbArr[2][0], rgbArr[2][1], rgbArr[2][2]);
         break;
     case L_N_3:
-        rgblight_sethsv(127, 160, 16);
+        rgblight_sethsv(rgbArr[3][0], rgbArr[3][1], rgbArr[3][2]);
         break;
     case L_N_4:
-        rgblight_sethsv(5, 160, 50);
+        rgblight_sethsv(rgbArr[4][0], rgbArr[4][1], rgbArr[4][2]);
         break;
     case L_N_5:
-        rgblight_sethsv(5, 160, 50);
+        rgblight_sethsv(rgbArr[5][0], rgbArr[5][1], rgbArr[5][2]);
         break;
     default:
-        rgblight_sethsv(70, 180, 28);
+        rgblight_sethsv(rgbArr[6][0], rgbArr[6][1], rgbArr[6][2]);
         break;
     }
     return state;
