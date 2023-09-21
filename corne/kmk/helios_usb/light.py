@@ -7,17 +7,46 @@ from kmk.extensions.peg_oled_Display import (
     OledData,
 )
 
-from kb import KMKKeyboard, isRight
-
-keyboard = KMKKeyboard()
+from kb import KMKKeyboard
 
 rgb = RGB(
-    pixel_pin=keyboard.rgb_pixel_pin,
+    pixel_pin=KMKKeyboard.rgb_pixel_pin,
     num_pixels=27,
     hue_default=int(255 * 0.99),
     sat_default=int(255 * 0.86),
     val_default=int(255 * 0.038),
 )
+
+from kmk.modules.layers import Layers
+
+
+rgb_list = [
+    [130, 185, 30],
+    [254, 240, 37],
+    [105, 160, 16],
+    [105, 160, 16],
+    [11, 210, 23],
+    [11, 210, 23],
+    [70, 180, 28],
+]
+
+
+def set_hsv(l):
+    rgb.set_hsv_fill(*[int(i) for i in l])
+
+
+class RgbSwitchLayers(Layers):
+    last_top_layer = 0
+    hues = (4, 20, 69)
+
+    def after_hid_send(self, keyboard):
+        if keyboard.active_layers[0] != self.last_top_layer:
+            self.last_top_layer = keyboard.active_layers[0]
+            if keyboard.active_layers[0] < len(rgb_list) - 1:
+                set_hsv(rgb_list[keyboard.active_layers[0]])
+            else:
+                set_hsv(rgb_list[-1])
+
 
 oled_text = Oled(
     OledData(

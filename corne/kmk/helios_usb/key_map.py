@@ -9,7 +9,7 @@ ABK_COMBOS = M_angle_brackets = simple_key_sequence((send_string("<>"), KC.LEFT)
 ARROW_LEFT = M_arrow_left = send_string("=>")
 ARROW_RIGHT = M_arrow_right = send_string("<=")
 
-QK_BOOT = KC.C
+QK_BOOT = KC.RESET
 
 tap_time = 1500
 
@@ -50,7 +50,7 @@ keymap = [
         KC.J,
         KC.K,
         KC.L,
-        KC.TRNS,
+        KC.SCLN,
         KC.QUOT,
         KC.LALT,
         KC.Z,
@@ -113,7 +113,7 @@ keymap = [
         KC.LT(4, KC.ENT),
         OSL(5),
         KC.LT(3, KC.ENT),
-        KC.TRNS,
+        KC.LSFT,
     ],
     [
         KC.LALT(KC.TAB),
@@ -286,7 +286,7 @@ keymap = [
         KC.TRNS,
         KC.TRNS,
         KC.TRNS,
-        KC.TRNS,
+        QK_BOOT,
         KC.TO(1),
         KC.TO(0),
         KC.NO,

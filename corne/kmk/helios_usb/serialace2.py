@@ -1,23 +1,25 @@
 from usb_cdc import data
 
 from kmk.modules import Module
-
-# from kmk.utils import Debug
 from kmk.keys import KC
 
-# debug = Debug(__name__)
+from light import rgb_list, set_hsv
 
 
 def callback(keyboard, data: bytearray):
-    print("receive", data)
+    # 虽然发送时要加\n,但callback接受时已经被自动清理掉\n了,callback返回时也不用添加\n,因为会被自动加上\n
+    # 格式是b'args1 args2 args3', 一般args1是mode, 后面的args是参数
     text: str = "".join([chr(i) for i in data])
     args = text.split(" ")
 
     if args[0] == "switch_layer":
         num = int(args[1])
         keyboard.tap_key(KC.TO(num))
-        return f"success: {text}"
-    return
+    if args[2] == "set_hsv":
+        # set_hsv([args[3], args[4], args[5]])
+        rgb_list[0] = [args[3], args[4], args[5]]
+
+    return f"success: {text}"
 
 
 class SerialACE(Module):
@@ -34,7 +36,6 @@ class SerialACE(Module):
         pass
 
     def after_matrix_scan(self, keyboard):
-        # keyboard.tap_key(KC.DF(1))
         pass
 
     def process_key(self, keyboard, key, is_pressed, int_coord):
@@ -61,18 +62,13 @@ class SerialACE(Module):
         self.buffer = self.buffer[idx + 1 :]
 
         try:
-            # if debug.enabled:
-            # debug(f"eval({line})")
-
             # ret = eval(line, {'keyboard': keyboard,'KC':KC})
-            # eval so danger, run in callback
+            # eval太危险了,在callback里自己定义吧
 
             res = callback(keyboard, line)
 
             data.write(bytearray(str(res) + "\n"))
         except Exception as err:
-            # if debug.enabled:
-            # debug(f"error: {err}")
             data.write(bytearray("error: " + str(err) + "\n"))
 
     def after_hid_send(self, keyboard):
