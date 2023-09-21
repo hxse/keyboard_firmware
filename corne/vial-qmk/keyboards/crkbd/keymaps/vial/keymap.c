@@ -40,10 +40,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [6] = LAYOUT_split_3x6_3(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_HUD, RGB_VAI, RGB_HUI, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_TOG, RGB_SAD, RGB_VAD, RGB_SAI, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO)};
 
 int rgbArr[7][3] = {
-    {130, 185, 30},
+    {130, 185, 35},
     {245, 204, 37},
-    {127, 160, 16},
-    {127, 160, 16},
+    {130, 150, 18},
+    {130, 150, 18},
     {5, 160, 50},
     {5, 160, 50},
     {70, 180, 28}};
