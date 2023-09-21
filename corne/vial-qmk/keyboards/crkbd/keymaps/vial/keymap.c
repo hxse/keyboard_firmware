@@ -42,10 +42,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 int rgbArr[7][3] = {
     {130, 185, 35},
     {245, 204, 37},
-    {130, 150, 18},
-    {130, 150, 18},
-    {5, 160, 50},
-    {5, 160, 50},
+    {127, 160, 16},
+    {127, 160, 16},
+    {5, 190, 60},
+    {5, 190, 60},
     {70, 180, 28}};
 
 void keyboard_post_init_user(void)
