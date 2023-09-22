@@ -70,10 +70,20 @@ void raw_hid_receive_kb(uint8_t *data, uint8_t length)
     }
     if (data[3] == 1)
     {
-        rgblight_sethsv(data[4], data[5], data[6]);
         rgbArr[0][0] = data[4];
         rgbArr[0][1] = data[5];
         rgbArr[0][2] = data[6];
+        rgblight_sethsv(rgbArr[data[2]][0], rgbArr[data[2]][1], rgbArr[data[2]][2]);
+    }
+    if (data[3] == 7)
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            rgbArr[i][0] = data[4 + i * 3];
+            rgbArr[i][1] = data[4 + i * 3 + 1];
+            rgbArr[i][2] = data[4 + i * 3 + 2];
+        }
+        rgblight_sethsv(rgbArr[data[2]][0], rgbArr[data[2]][1], rgbArr[data[2]][2]);
     }
     raw_hid_send(data, length);
 }
