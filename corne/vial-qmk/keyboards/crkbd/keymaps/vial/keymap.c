@@ -49,7 +49,6 @@ int rgbArr[7][3] = {
     {70, 180, 28}};
 
 void keyboard_post_init_user(void)
-
 {
     // Customise these values to desired behaviour
     // debug_enable = true;
