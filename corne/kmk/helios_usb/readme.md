@@ -23,3 +23,4 @@
   * copy file: https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306/blob/main/adafruit_displayio_ssd1306.py
   * copy dir: https://github.com/adafruit/Adafruit_CircuitPython_Display_Text/tree/main/adafruit_display_text
 * 还是有问题, 根据layer切换rgb时, 左手只能切换左边, 右手可以切换两边,很奇怪,算了用qmk吧
+  * https://kmkfw.zulipchat.com/#narrow/stream/358347-general/topic/rgb.20only.20reactive.20on.20one.20side
