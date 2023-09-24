@@ -18,7 +18,7 @@ jobs:
       - name: Checkout-vial-qmk
         uses: actions/checkout@master
         with:
-          repository: qmk/qmk_firmware
+          repository: vial-kb/vial-qmk
           path: './qmk_firmware'
 
       - name: install qmk
