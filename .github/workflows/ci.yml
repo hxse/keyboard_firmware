@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: checkout-default-repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@latest
 
       - name: Checkout-vial-qmk
-        uses: actions/checkout@v2
+        uses: actions/checkout@latest
         with:
           repository: vial-kb/vial-qmk
           path: './vial-qmk'
