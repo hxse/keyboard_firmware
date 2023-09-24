@@ -18,8 +18,8 @@ jobs:
       - name: Checkout-vial-qmk
         uses: actions/checkout@master
         with:
-          repository: vial-kb/vial-qmk
-          path: './vial-qmk'
+          repository: qmk/qmk_firmware
+          path: './qmk_firmware'
 
       - name: install qmk
         continue-on-error: true
@@ -31,24 +31,12 @@ jobs:
       - name: Setup and Build
         continue-on-error: true
         run: |
-          #echo 1
-          #ls ./
+          cp -r -f ./corne/vial-qmk/keyboards ./qmk_firmware
 
-          #echo 2
-          #ls ./vial-qmk
+          echo cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
+          cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
 
-          echo 3 cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
-          cp -r -f ./corne/vial-qmk/keyboards ./vial-qmk
-
-          #echo 4
-          #ls ./vial-qmk/keyboards/crkbd/keymaps/vial
-
-          echo cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
-          cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
-
-          echo cd ./vial-qmk
-          cd ./vial-qmk
-          ls ./
+          cd ./qmk_firmware
 
           make git-submodule
 
