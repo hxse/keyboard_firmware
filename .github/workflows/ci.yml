@@ -41,7 +41,7 @@ jobs:
         run: |
           cd ~/qmk_firmware
 
-          #make git-submodule
+          make git-submodule
 
           #make crkbd:vial -e CONVERT_TO=helios
 
