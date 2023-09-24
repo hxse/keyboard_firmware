@@ -41,6 +41,7 @@ jobs:
 
           echo cd ./vial-qmk
           cd ./vial-qmk
+          ls ./
 
           echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
           qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
