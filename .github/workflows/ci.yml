@@ -33,6 +33,4 @@ jobs:
           echo 4
           ls ~/work/keyboard_firmware/keyboard_firmware
           echo 5
-          ls ~/work/keyboard_firmware/keyboard_firmware/keyboards
-          echo 6
           ls ./
