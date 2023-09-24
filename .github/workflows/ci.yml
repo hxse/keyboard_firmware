@@ -24,8 +24,8 @@ jobs:
       - name: install qmk
         continue-on-error: true
         run: |
-          python3 -m pip install --user qmk
-          qmk setup -y
+          #python3 -m pip install --user qmk
+          #qmk setup -y
 
 
       - name: copy file
