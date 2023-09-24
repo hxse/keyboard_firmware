@@ -52,9 +52,9 @@ jobs:
 
           make git-submodule
 
-          make crkbd:vial -e CONVERT_TO=helios
+          #make crkbd:vial -e CONVERT_TO=helios
 
           #echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
-          #qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
+          qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
 
           ls ./.build
