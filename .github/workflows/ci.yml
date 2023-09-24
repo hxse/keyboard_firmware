@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout-keyboard_firmware
+      - name: checkout-default-repo
         uses: actions/checkout@v2
 
       - name: Checkout-vial-qmk
@@ -26,14 +26,12 @@ jobs:
         run: |
           export QMK_HOME='~/vial-qmk'
           echo 1
-          ls ~
-          echo 2
-          ls ~/work
-          echo 3
-          ls ~/work/keyboard_firmware
-          echo 4
-          ls ~/work/keyboard_firmware/keyboard_firmware
-          echo 5
           ls ./
-          echo 5
+          echo 2
           ls ./vial-qmk
+          echo 3
+          ls ./vial-qmk/keyboards/crkbd
+          echo 4
+          cp -r ./corne/vial-qmk/keyboards/ ~/vial-qmk
+          echo 5
+          ls ./vial-qmk/keyboards/crkbd
