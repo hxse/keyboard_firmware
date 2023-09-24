@@ -24,8 +24,8 @@ jobs:
       - name: install qmk
         continue-on-error: true
         run: |
-          python3 -m pip install --user qmk
-          qmk setup -y
+          #python3 -m pip install --user qmk
+          #qmk setup -y
 
 
       - name: Setup and Build
@@ -50,7 +50,10 @@ jobs:
           cd ./vial-qmk
           ls ./
 
-          echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
-          qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
+          make git-submodule
+          make crkbd:vial
+
+          #echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
+          #qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
 
           ls ./.build
