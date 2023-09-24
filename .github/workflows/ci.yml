@@ -38,7 +38,7 @@ jobs:
           #ls ./vial-qmk
 
           echo 3 cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
-          cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
+          cp -r -f ./corne/vial-qmk/keyboards ./vial-qmk
 
           #echo 4
           #ls ./vial-qmk/keyboards/crkbd/keymaps/vial
