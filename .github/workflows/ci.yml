@@ -21,6 +21,11 @@ jobs:
           repository: vial-kb/vial-qmk
           path: './vial-qmk'
 
+      - name: install qmk
+        continue-on-error: true
+        run: |
+          python3 -m pip install --user qmk
+
       - name: Setup and Build
         continue-on-error: true
         run: |
@@ -38,8 +43,6 @@ jobs:
 
           echo cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
-
-          python3 -m pip install --user qmk
 
           echo cd ./vial-qmk
           cd ./vial-qmk
