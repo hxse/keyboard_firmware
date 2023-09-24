@@ -33,8 +33,8 @@ jobs:
           ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
           echo 4
-          echo cp -r ./corne/vial-qmk/keyboards/* ~/vial-qmk/keyboards
-          cp -r -f ./corne/vial-qmk/keyboards/crkbd/keymaps/vial/* ~/vial-qmk/crkbd/keymaps/vial
+          echo cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
+          cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
           echo 5
           ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
