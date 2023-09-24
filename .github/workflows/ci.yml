@@ -29,14 +29,9 @@ jobs:
           ls ./
           echo 2
           ls ./vial-qmk
-          echo 3
-          ls ./vial-qmk/keyboards/crkbd/keymaps/vial
-          cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
-          echo 4
-          echo cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
+          echo 3 cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
           cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
-          echo 5
+          echo 4
           ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
-          ls ./vial-qmk
 
