@@ -40,7 +40,6 @@ jobs:
         continue-on-error: true
         run: |
           cd ./qmk_firmware
-          ls ./
 
           #make git-submodule
 
