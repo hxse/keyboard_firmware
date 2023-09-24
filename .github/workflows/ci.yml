@@ -14,10 +14,11 @@ jobs:
       - name: checkout-default-repo
         uses: actions/checkout@master
 
-      - name: Checkout-vial-qmk
+      - name: Checkout-qmk
         uses: actions/checkout@master
         with:
-          repository: vial-kb/vial-qmk
+          #repository: vial-kb/vial-qmk
+          repository: qmk/qmk_firmware
           path: '~/qmk_firmware'
 
       - name: install qmk
