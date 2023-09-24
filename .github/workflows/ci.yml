@@ -30,7 +30,7 @@ jobs:
           #qmk setup -y
 
           mkdir ~/vial-qmk
-          cp -r ./vial-qmk ~/vial-qmk
+          cp -r ./vial-qmk ~
           rm -rf ./vial-qmk
 
 
@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true
         run: |
           cd ~/vial-qmk
-          ls ./
+          ls ./vial-qmk
 
           make git-submodule
 
