@@ -28,7 +28,7 @@ jobs:
           qmk setup -y
 
 
-      - name: Setup and Build
+      - name: copy file
         continue-on-error: true
         run: |
           cp -r -f ./corne/vial-qmk/keyboards ./qmk_firmware
@@ -38,6 +38,9 @@ jobs:
 
           cd ./qmk_firmware
 
+      - name: build
+        continue-on-error: true
+        run: |
           make git-submodule
 
           #make crkbd:vial -e CONVERT_TO=helios
