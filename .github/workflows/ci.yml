@@ -36,11 +36,11 @@ jobs:
           echo cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
           cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
 
-          cd ./qmk_firmware
-
       - name: build
         continue-on-error: true
         run: |
+          cd ./qmk_firmware
+
           make git-submodule
 
           #make crkbd:vial -e CONVERT_TO=helios
