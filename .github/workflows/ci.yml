@@ -38,4 +38,5 @@ jobs:
           echo 5
           ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
+          ls ./vial-qmk
 
