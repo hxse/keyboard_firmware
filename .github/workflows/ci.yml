@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true
         run: |
           cd ~/vial-qmk
-          ls ./vial-qmk
+          ls ~/vial-qmk
 
           make git-submodule
 
