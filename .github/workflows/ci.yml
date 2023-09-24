@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: checkout-keyboard_firmware
         uses: actions/checkout@v2
 
-      - name: Checkout
+      - name: Checkout-vial-qmk
         uses: actions/checkout@v2
         with:
           repository: vial-kb/vial-qmk
