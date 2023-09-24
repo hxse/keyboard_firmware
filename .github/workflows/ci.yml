@@ -25,7 +25,7 @@ jobs:
         continue-on-error: true
         run: |
           python3 -m pip install --user qmk
-          qmk setup
+          qmk setup -y
 
 
       - name: Setup and Build
