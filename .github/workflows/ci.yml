@@ -34,7 +34,7 @@ jobs:
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
           echo 4
           echo cp -r ./corne/vial-qmk/keyboards/* ~/vial-qmk/keyboards
-          cp -r ./corne/vial-qmk/keyboards/ ~/vial-qmk
+          cp -r -f ./corne/vial-qmk/keyboards/ ~/vial-qmk
           echo 5
           ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
