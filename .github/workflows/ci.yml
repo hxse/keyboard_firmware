@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: vial-kb/vial-qmk
-          path: '~/vial-qmk'
+          path: './vial-qmk'
 
       - name: Setup and Build
         continue-on-error: true
@@ -34,3 +34,5 @@ jobs:
           ls ~/work/keyboard_firmware/keyboard_firmware
           echo 5
           ls ~/work/keyboard_firmware/keyboard_firmware/keyboards
+          echo 6
+          ls ./
