@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: checkout-default-repo
-        uses: actions/checkout@latest
+        uses: actions/checkout@master
 
       - name: Checkout-vial-qmk
-        uses: actions/checkout@latest
+        uses: actions/checkout@master
         with:
           repository: vial-kb/vial-qmk
           path: './vial-qmk'
@@ -51,7 +51,8 @@ jobs:
           ls ./
 
           make git-submodule
-          make crkbd:vial
+
+          make crkbd:vial -e CONVERT_TO=helios
 
           #echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
           #qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
