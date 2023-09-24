@@ -20,8 +20,12 @@ jobs:
         continue-on-error: true
         run: |
           export QMK_HOME='~/vial-qmk'
+          echo 1
           ls ~
-          ls ~/runners
+          echo 2
+          ls ~/work
+          echo 3
+          ls ~/work/keyboard_firmware
           cp -r ~/work/keyboard_firmware/keyboard_firmware/corne/vial-qmk/keyboards $QMK_HOME
           cd $QMK_HOME
           python3 -m pip install --user qmk
