@@ -24,14 +24,15 @@ jobs:
       - name: Setup and Build
         continue-on-error: true
         run: |
-          export QMK_HOME='~/vial-qmk'
-          echo 1
-          ls ./
-          echo 2
-          ls ./vial-qmk
+          #echo 1
+          #ls ./
+          #echo 2
+          #ls ./vial-qmk
           echo 3 cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
           cp -r -f ./corne/vial-qmk/keyboards/* ./vial-qmk/keyboards
-          echo 4
-          ls ./vial-qmk/keyboards/crkbd/keymaps/vial
+          #echo 4
+          #ls ./vial-qmk/keyboards/crkbd/keymaps/vial
+          echo cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
+
 
