@@ -1,8 +1,7 @@
-# This is a basic workflow to help you get started with Actions
+
+# 参考 https://github.com/forester521/qmk-config/blob/main/.github/workflows/ci.yml
 
 name: Generate Firmwares
-
-# Controls when the workflow will run
 on:
   push:
   workflow_dispatch:
@@ -19,7 +18,7 @@ jobs:
         uses: actions/checkout@master
         with:
           repository: vial-kb/vial-qmk
-          path: './qmk_firmware'
+          path: '~/qmk_firmware'
 
       - name: install qmk
         continue-on-error: true
@@ -31,15 +30,15 @@ jobs:
       - name: copy file
         continue-on-error: true
         run: |
-          cp -r -f ./corne/vial-qmk/keyboards ./qmk_firmware
+          cp -r -f ./corne/vial-qmk/keyboards ~/qmk_firmware
 
-          echo cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
-          cat ./qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
+          echo cat ~/qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
+          cat ~/qmk_firmware/keyboards/crkbd/keymaps/vial/keymap.c
 
       - name: build
         continue-on-error: true
         run: |
-          cd ./qmk_firmware
+          cd ~/qmk_firmware
 
           #make git-submodule
 
