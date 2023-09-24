@@ -24,10 +24,10 @@ jobs:
       - name: install qmk
         continue-on-error: true
         run: |
-          git clone https://github.com/vial-kb/vial-qmk --recursive
+          git clone --recurse-submodules https://github.com/vial-kb/vial-qmk
 
           python3 -m pip install --user qmk
-          qmk setup -y
+          #qmk setup -y
 
           mkdir ~/vial-qmk
           cp -r ./vial-qmk ~/vial-qmk
