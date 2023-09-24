@@ -39,6 +39,8 @@ jobs:
           echo cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
           cat ./vial-qmk/keyboards/crkbd/keymaps/vial/keymap.c
 
+          python3 -m pip install --user qmk
+
           echo cd ./vial-qmk
           cd ./vial-qmk
           ls ./
