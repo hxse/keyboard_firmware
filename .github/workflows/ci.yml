@@ -30,9 +30,9 @@ jobs:
           echo 2
           ls ./vial-qmk
           echo 3
-          ls ./vial-qmk/keyboards/crkbd/keymaps
+          ls ./vial-qmk/keyboards/crkbd/keymaps/vial
           echo 4
           echo cp -r ./corne/vial-qmk/keyboards/ ~/vial-qmk
           cp -r ./corne/vial-qmk/keyboards/ ~/vial-qmk
           echo 5
-          ls ./vial-qmk/keyboards/crkbd/keymaps
+          ls ./vial-qmk/keyboards/crkbd/keymaps/vial
