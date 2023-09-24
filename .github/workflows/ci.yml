@@ -17,8 +17,8 @@ jobs:
       - name: Checkout-qmk
         uses: actions/checkout@master
         with:
-          #repository: vial-kb/vial-qmk
-          repository: qmk/qmk_firmware
+          repository: vial-kb/vial-qmk
+          #repository: qmk/qmk_firmware
           path: '~/qmk_firmware'
 
       - name: install qmk
@@ -43,9 +43,9 @@ jobs:
 
           make git-submodule
 
-          #make crkbd:vial -e CONVERT_TO=helios
+          make crkbd:vial -e CONVERT_TO=helios
 
           #echo qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
-          qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
+          #qmk compile -kb crkbd -km vial -e CONVERT_TO=helios
 
           ls ./.build
