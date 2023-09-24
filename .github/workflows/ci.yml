@@ -21,7 +21,7 @@ jobs:
         run: |
           export QMK_HOME='~/vial-qmk'
           ls ~
-          ls ~/work
+          ls ~/runners
           cp -r ~/work/keyboard_firmware/keyboard_firmware/corne/vial-qmk/keyboards $QMK_HOME
           cd $QMK_HOME
           python3 -m pip install --user qmk
