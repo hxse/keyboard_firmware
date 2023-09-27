@@ -89,9 +89,9 @@
       "KC_LGUI",
       "OSM(MOD_LCTL)",
       "LT(2,KC_SPC)",
-      "LT(4,KC_ENT)",
-      "OSL(5)",
       "LT(3,KC_ENT)",
+      "OSL(5)",
+      "LT(4,KC_ENT)",
       "KC_LSFT"
     ],
     [
@@ -108,7 +108,7 @@
       "KC_LT",
       "KC_TRNS",
       "KC_DEL",
-      "LT(5,KC_ENT)",
+      "OSL(4)",
       "KC_LEFT",
       "KC_DOWN",
       "KC_RGHT",
@@ -221,7 +221,7 @@
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
-      "TO(1)",
+      "QK_BOOT",
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS"
