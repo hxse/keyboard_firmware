@@ -31,7 +31,7 @@
       "KC_L",
       "KC_SCLN",
       "KC_QUOT",
-      "KC_LALT",
+      "KC_LSFT",
       "KC_Z",
       "KC_X",
       "KC_C",
@@ -45,10 +45,10 @@
       "KC_LGUI",
       "KC_LCTL",
       "KC_SPC",
-      "OSL(4)",
+      "LT(3,KC_ENT)",
       "OSL(5)",
-      "KC_ENT",
-      "KC_LSFT"
+      "LT(4,KC_ENT)",
+      "KC_LALT"
     ],
     [
       "KC_TAB",
@@ -139,7 +139,7 @@
       "KC_TRNS"
     ],
     [
-      "KC_TRNS",
+      "LALT(KC_TAB)",
       "KC_PLUS",
       "KC_MINS",
       "KC_ASTR",
@@ -151,7 +151,7 @@
       "KC_RPRN",
       "KC_GT",
       "KC_TRNS",
-      "KC_TRNS",
+      "KC_BSPC",
       "KC_1",
       "KC_2",
       "KC_3",
@@ -183,7 +183,7 @@
       "KC_TRNS"
     ],
     [
-      "ANY(LALT(LSFT(KC_F7)))",
+      "LALT(KC_TAB)",
       "KC_F11",
       "KC_F12",
       "ANY(LALT(LSFT(KC_F3)))",
@@ -195,7 +195,7 @@
       "KC_NO",
       "KC_NO",
       "KC_TRNS",
-      "ANY(LALT(LSFT(KC_F8)))",
+      "ANY(LALT(LSFT(KC_F7)))",
       "KC_F1",
       "KC_F2",
       "KC_F3",
@@ -207,7 +207,7 @@
       "KC_NO",
       "KC_NO",
       "KC_NO",
-      "KC_TRNS",
+      "ANY(LALT(LSFT(KC_F8)))",
       "KC_F6",
       "KC_F7",
       "KC_F8",
